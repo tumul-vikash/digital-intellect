@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { 
+  View, 
+  Text, 
+  StyleSheet,
+  TextInput 
+} from 'react-native';
+import { inject, observer } from "mobx-react";
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,9 +15,15 @@ export default class Home extends Component {
   }
 
   render() {
+    const { text, updateText, textLength } = this.props.store;
     return (
       <View style={[styles.container]}>
-        <Text> Home </Text>
+        <TextInput 
+          style={styles.input}
+          onChangeText={updateText}
+        />
+        <Text>{text}</Text>
+        <Text>Length: {textLength}</Text>
       </View>
     );
   }
@@ -21,5 +33,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
-  }
+  },
 });
+
+export default inject("store")(observer(Home));
