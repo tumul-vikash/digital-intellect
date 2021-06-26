@@ -1,16 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 /* react imports */
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 /* other dependency imports */
-import {
-  Actions, 
-  Router, 
-  Scene, 
-  Stack, 
-  Drawer
-} from 'react-native-router-flux';
+import {Actions, Router, Scene, Stack, Drawer} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Provider } from 'mobx-react';
+import {Provider} from 'mobx-react';
 
 /* container imports */
 import SplashScreen from './src/containers/SplashScreen';
@@ -29,32 +24,27 @@ import store from './src/stores/store';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
     return (
       <Provider store={store}>
         <Router
-        navigationBarStyle={{
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
-          backgroundColor: 'teal',
-          height: 50,
-        }}
-        titleStyle={{
-          color: '#fff',
-          fontSize: 30,
-          fontFamily: 'Poppins-Regular'
-        }}
-      >
-        <Stack
-          key="root"
-          navBar={() => <NavBar />}
-        >
-          <Scene key="splash" component={SplashScreen} headerShown={false} />
+          navigationBarStyle={{
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0,
+            backgroundColor: 'teal',
+            height: 50,
+          }}
+          titleStyle={{
+            color: '#fff',
+            fontSize: 30,
+            fontFamily: 'Poppins-Regular',
+          }}>
+          <Stack key="root" navBar={() => <NavBar />}>
+            <Scene key="splash" component={SplashScreen} headerShown={false} />
             <Scene
               key="tabScreen"
               tabs={true}
@@ -63,37 +53,42 @@ export default class App extends Component {
               labelStyle={{
                 fontSize: 13,
                 fontWeight: 'bold',
-                fontFamily: 'Poppins-Regular'
-              }}
-            >
-              <Scene 
+                fontFamily: 'Poppins-Regular',
+              }}>
+              <Scene
                 key="home"
-                title="Home"  
-                component={Home} 
-                headerShown={false} 
-                icon={() => <Icon name="home" size={27} color="#EE5E1B" />}
-                initial 
-              />
-              <Scene  
-                key="live"
-                title="Live Courses" 
-                component={LiveCourses} 
+                title="Home"
+                component={Home}
                 headerShown={false}
-                icon={() => <Icon name="laptop" size={27} color="#EE5E1B" />} 
+                icon={() => <Icon name="home" size={27} color="#EE5E1B" />}
+                initial
               />
-              <Scene  
+              <Scene
+                key="live"
+                title="Live Courses"
+                component={LiveCourses}
+                headerShown={false}
+                icon={() => <Icon name="laptop" size={27} color="#EE5E1B" />}
+              />
+              <Scene
                 key="online"
-                title="Online Courses" 
-                component={OnlineCourses} 
+                title="Online Courses"
+                component={OnlineCourses}
                 headerShown={false}
                 icon={() => <Icon name="library" size={27} color="#EE5E1B" />}
               />
-              <Scene  
+              <Scene
                 key="profile"
-                title="Profile" 
-                component={Profile} 
+                title="Profile"
+                component={Profile}
                 headerShown={false}
-                icon={() => <Icon name="md-person-circle-outline" size={27} color="#EE5E1B" />}
+                icon={() => (
+                  <Icon
+                    name="md-person-circle-outline"
+                    size={27}
+                    color="#EE5E1B"
+                  />
+                )}
               />
             </Scene>
           </Stack>

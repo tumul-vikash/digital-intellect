@@ -1,3 +1,1 @@
-class authStore{
-    
-}
+class authStore {}

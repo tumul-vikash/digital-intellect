@@ -1,3 +1,1 @@
-class homeStore {
-    
-}
+class homeStore {}
