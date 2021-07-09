@@ -9,6 +9,7 @@ import {Provider} from 'mobx-react';
 
 /* container imports */
 import SplashScreen from './src/containers/SplashScreen';
+import Search from './src/containers/Search';
 import Login from './src/containers/Login';
 import Home from './src/containers/Home';
 import LiveCourses from './src/containers/LiveCourses';
@@ -16,9 +17,12 @@ import OnlineCourses from './src/containers/OnlineCourses';
 import Profile from './src/containers/Profile';
 
 /* utils imports */
-import NavBar from './src/utils/Navbar';
+import Navbar from './src/utils/Navbar';
+import ArrowNav from './src/utils/Navbar2';
 
 /* Mobx imports */
+import homeStore from './src/stores/homeStore';
+import utilityStore from './src/stores/utilityStore';
 import store from './src/stores/store';
 
 export default class App extends Component {
@@ -29,7 +33,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
+      <Provider homeStore={homeStore} utilityStore={utilityStore} store={store}>
         <Router
           navigationBarStyle={{
             elevation: 0,
@@ -43,10 +47,22 @@ export default class App extends Component {
             fontSize: 30,
             fontFamily: 'Poppins-Regular',
           }}>
-          <Stack key="root" navBar={() => <NavBar />}>
-            <Scene key="splash" component={SplashScreen} headerShown={false} />
+          <Stack key="root">
+            <Scene
+              key="splash"
+              component={SplashScreen}
+              animationEnabled={false}
+              headerShown={false}
+            />
+            <Scene
+              key="search"
+              navBar={() => <ArrowNav />}
+              component={Search}
+              animationEnabled={false}
+            />
             <Scene
               key="tabScreen"
+              navBar={() => <Navbar />}
               tabs={true}
               activeTintColor="teal"
               inactiveTintColor="gray"

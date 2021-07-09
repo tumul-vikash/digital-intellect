@@ -1,23 +1,19 @@
 import {observable, action, makeObservable, computed} from 'mobx';
 
 class store {
-  text = '';
+  text = 0;
 
   constructor() {
     makeObservable(this, {
       text: observable,
       updateText: action,
-      textLength: computed,
     });
   }
 
-  updateText = (text) => {
-    this.text = text;
+  updateText = () => {
+    this.text = this.text + 1;
+    console.log(this.text);
   };
-
-  get textLength() {
-    return this.text.length;
-  }
 }
 
 export default new store();

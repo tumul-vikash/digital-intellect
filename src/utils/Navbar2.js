@@ -4,32 +4,24 @@ import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {inject, observer} from 'mobx-react';
 
-class Navbar extends Component {
+class ArrowNav extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    const {updateText} = this.props.store;
     return (
       <View style={styles.container}>
         <View style={styles.left}>
-          <TouchableHighlight onPress={() => updateText()} underlayColor="none">
-            <Icon name="bars" size={25} color="#fff" />
+          <TouchableHighlight
+            onPress={() => Actions.home()}
+            underlayColor="none">
+            <Icon name="arrow-left" size={20} color="#fff" />
           </TouchableHighlight>
         </View>
         <View style={styles.middle}>
           <Text style={styles.text}>Digital Intellect</Text>
-        </View>
-        <View style={styles.right}>
-          <TouchableHighlight
-            onPress={() => {
-              Actions.search();
-            }}
-            underlayColor="none">
-            <Icon name="search" size={25} color="#fff" />
-          </TouchableHighlight>
         </View>
       </View>
     );
@@ -42,7 +34,6 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'teal',
     justifyContent: 'center',
-    elevation: 7,
   },
   left: {
     flex: 0.2,
@@ -58,11 +49,6 @@ const styles = StyleSheet.create({
     marginLeft: 7,
     fontFamily: 'Poppins-Bold',
   },
-  right: {
-    flex: 0.2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });
 
-export default inject('utilityStore', 'store')(observer(Navbar));
+export default inject('utilityStore', 'store')(observer(ArrowNav));
