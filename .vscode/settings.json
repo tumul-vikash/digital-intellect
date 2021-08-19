@@ -3,5 +3,8 @@
         "origin",
         "upstream",
         "digital-intellect"
+    ],
+    "cSpell.words": [
+        "firestore"
     ]
 }

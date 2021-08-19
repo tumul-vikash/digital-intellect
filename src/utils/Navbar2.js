@@ -1,10 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {inject, observer} from 'mobx-react';
 
-class ArrowNav extends Component {
+export class Navbar2 extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -12,16 +13,17 @@ class ArrowNav extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.left}>
-          <TouchableHighlight
-            onPress={() => Actions.home()}
-            underlayColor="none">
-            <Icon name="arrow-left" size={20} color="#fff" />
-          </TouchableHighlight>
+      <View style={[styles.container, {elevation: 4}]}>
+        <View style={[styles.left, {padding: 3}]}>
+          <Image
+            style={styles.logo}
+            source={require('../assets/images/Logo2.png')}
+          />
         </View>
         <View style={styles.middle}>
-          <Text style={styles.text}>Digital Intellect</Text>
+          <Text style={[styles.text, {fontFamily: 'Poppins-ExtraBold'}]}>
+            Digital Intellect
+          </Text>
         </View>
       </View>
     );
@@ -37,8 +39,16 @@ const styles = StyleSheet.create({
   },
   left: {
     flex: 0.2,
+    borderRadius: 50 / 2,
+    margin: 3,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  logo: {
+    width: 40,
+    height: 40,
   },
   middle: {
     flex: 1,
@@ -51,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject('utilityStore', 'store')(observer(ArrowNav));
+export default inject('utilityStore', 'store')(observer(Navbar2));

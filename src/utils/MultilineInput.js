@@ -24,8 +24,7 @@ export default class MultilineInput extends Component {
           style={[
             {
               backgroundColor: '#fff',
-              fontWeight: 'bold',
-              fontSize: 18,
+              fontSize: 16,
               fontFamily: 'Poppins-Regular',
               height: 100,
             },

@@ -1,14 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-  Modal,
-  ScrollView,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, Modal} from 'react-native';
 import {inject, observer} from 'mobx-react';
 
 import OutlinedInput from './OutlinedInput';
@@ -37,7 +30,7 @@ class PostForm extends Component {
   }
 
   render() {
-    const {togglePostUpdateLoader} = this.props.homeStore;
+    const {togglePostUpdateLoader, userDetails} = this.props.homeStore;
     return (
       <View>
         <TouchableHighlight
@@ -77,6 +70,7 @@ class PostForm extends Component {
                       question: this.state.question,
                       description: this.state.description,
                       createdAt: new Date(),
+                      username: userDetails.username,
                     };
                   } else if (this.state.type == 'post') {
                     post = {
@@ -84,6 +78,7 @@ class PostForm extends Component {
                       topic: this.state.topic,
                       post: this.state.post,
                       createdAt: new Date(),
+                      username: userDetails.username,
                     };
                   }
                   togglePostUpdateLoader(true);

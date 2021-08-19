@@ -15,6 +15,7 @@ import {inject, observer} from 'mobx-react';
 
 import PostForm from '../utils/PostForm';
 import Loader from '../utils/Loader';
+import ModalLoader from '../utils/ModalLoader';
 
 class Home extends Component {
   constructor(props) {
@@ -52,16 +53,7 @@ class Home extends Component {
               loaderText="updating post"
             />
           ) : null}
-          <Modal transparent={true} visible={this.state.showLoaderModal}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                backgroundColor: '#DFDFDF8F',
-              }}>
-              <Loader visibility={true} loaderText="Loading" />
-            </View>
-          </Modal>
+          <ModalLoader visible={this.state.showLoaderModal} text="Loading" />
           {posts.map((post, index) => {
             if (post.type == 'question') {
               return (
@@ -73,7 +65,8 @@ class Home extends Component {
                   <View style={styles.extra}>
                     <Text
                       style={[styles.text, {fontSize: 15, color: '#EE5E1B'}]}>
-                      username{' . '}
+                      {post.username ? post.username : 'anonymous'}
+                      {' . '}
                     </Text>
                     <TouchableHighlight
                       style={{
@@ -125,7 +118,8 @@ class Home extends Component {
                   <View style={styles.extra}>
                     <Text
                       style={[styles.text, {fontSize: 15, color: '#EE5E1B'}]}>
-                      username{' . '}
+                      {post.username ? post.username : 'anonymous'}
+                      {' . '}
                     </Text>
                     <TouchableHighlight
                       style={{

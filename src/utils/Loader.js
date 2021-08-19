@@ -12,7 +12,7 @@ export default class Loader extends Component {
     return (
       <View style={[styles.container, this.props.style]}>
         <ActivityIndicator
-          size="5"
+          size={this.props.size ? this.props.size : '5'}
           animating={this.props.visibility}
           color="#EE5E1B"
         />
